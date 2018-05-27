@@ -391,7 +391,7 @@ namespace SignUpDemo
                                     {
                                         Diem.Diem = k;
                                     }
-                                    else
+                                    else if (rw.Cells[6].Value.ToString() != "")
                                     {
                                         MessageBox.Show("Student "+ rw.Cells[0].Value.ToString()+" does not have valid score!");
                                         success = false;
@@ -439,7 +439,7 @@ namespace SignUpDemo
                                 {
                                     check2.Diem = score;
                                 }
-                                else
+                                else if (rw.Cells[6].Value.ToString() != "")
                                 {
                                     MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid score!");
                                     success = false;
@@ -480,7 +480,7 @@ namespace SignUpDemo
                                     {
                                        Diem.Diem = k;
                                     }
-                                    else
+                                    else if (rw.Cells[6].Value.ToString() !="")
                                     {
                                        MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid score!");
                                        success = false;
