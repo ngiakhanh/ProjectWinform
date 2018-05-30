@@ -37,7 +37,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
             this.MSSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +46,8 @@
             this.Diem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KetQuaTN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,16 +136,6 @@
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(378, 373);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(106, 42);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Refresh";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // MSSV
             // 
             this.MSSV.DataPropertyName = "MSSV";
@@ -201,12 +192,33 @@
             this.Delete.Text = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(378, 373);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(106, 42);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Refresh";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(658, 305);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(96, 49);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "XetTN";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // QLDSSV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(853, 450);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button3);
@@ -246,5 +258,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Diem;
         private System.Windows.Forms.DataGridViewTextBoxColumn KetQuaTN;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Button button5;
     }
 }
