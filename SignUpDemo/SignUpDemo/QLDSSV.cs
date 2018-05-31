@@ -2,13 +2,9 @@
 using ExcelDataReader;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SignUpDemo
@@ -52,6 +48,8 @@ namespace SignUpDemo
                                   p.TenMH,
                                   t.Diem,
                                   s.KetQuaTN,
+                                  s.DTB,
+                                  s.XepLoaiTN,
                               });
                     DataTable dt = ConvertDatatable.LINQToDataTable(DS);
                     saveFileDialog1.FileName = "DanhSachTemp";
@@ -90,6 +88,8 @@ namespace SignUpDemo
                                   p.TenMH,
                                   t.Diem,
                                   s.KetQuaTN,
+                                  s.DTB,
+                                  s.XepLoaiTN,
                               });
                     DataTable dt = ConvertDatatable.LINQToDataTable(DS);
                     saveFileDialog1.FileName = "DanhSachTemp";
@@ -128,6 +128,8 @@ namespace SignUpDemo
                               p.TenMH,
                               t.Diem,
                               s.KetQuaTN,
+                              s.DTB,
+                              s.XepLoaiTN,
                           });
                 DataTable dt = ConvertDatatable.LINQToDataTable(DS);
                 saveFileDialog1.FileName = "DanhSachTemp";
@@ -219,13 +221,13 @@ namespace SignUpDemo
             {
                 tbl_SinhVien SinhVien = new tbl_SinhVien();
                 tbl_Diem Diem = new tbl_Diem();
-                if (rw.Cells[0].Value == null || rw.Cells[0].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[0].Value.ToString()))
+                if (rw.Cells["MSSV"].Value == null || rw.Cells["MSSV"].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells["MSSV"].Value.ToString()))
                 {
                     continue;
                 }
 
                 //Check ton tai trong tbl_SinhVien
-                string valueCheck = rw.Cells[0].Value.ToString();
+                string valueCheck = rw.Cells["MSSV"].Value.ToString();
 
                 var check = (from s in SV.tbl_SinhVien
                              where s.MSSV == valueCheck
@@ -236,7 +238,7 @@ namespace SignUpDemo
                     //Check MSSV
                     bool kh = false;
 
-                    string temp = rw.Cells[0].Value.ToString();
+                    string temp = rw.Cells["MSSV"].Value.ToString();
                     string temp2 = "";
                     int i = 0;
                     do
@@ -269,9 +271,9 @@ namespace SignUpDemo
                     //Add
                     if (kh == true)
                     {
-                        SinhVien.MSSV = rw.Cells[0].Value.ToString();
-                        SinhVien.Ho = rw.Cells[1].Value.ToString();
-                        SinhVien.Ten = rw.Cells[2].Value.ToString();
+                        SinhVien.MSSV = rw.Cells["MSSV"].Value.ToString();
+                        SinhVien.Ho = rw.Cells["Ho"].Value.ToString();
+                        SinhVien.Ten = rw.Cells["Ten"].Value.ToString();
 
                         SinhVien.MaKhoa = temp2;
                         SV.tbl_SinhVien.Add(SinhVien);
@@ -283,7 +285,7 @@ namespace SignUpDemo
                         bool checkMaMH = false;
                         for (int r = 0; r < mamh.Count; r++)
                         {
-                            if (mamh[r] == rw.Cells[4].Value.ToString())
+                            if (mamh[r] == rw.Cells["MaMH"].Value.ToString())
                             {
                                 checkMaMH = true;
                                 break;
@@ -292,51 +294,42 @@ namespace SignUpDemo
 
                         if (checkMaMH == true)
                         {
-                            Diem.MSSV = rw.Cells[0].Value.ToString();
-                            Diem.MaMH = rw.Cells[4].Value.ToString();
+                            Diem.MSSV = rw.Cells["MSSV"].Value.ToString();
+                            Diem.MaMH = rw.Cells["MaMH"].Value.ToString();
 
                             Double k;
-                            if (Double.TryParse(rw.Cells[6].Value.ToString(), out k))
+                            if (Double.TryParse(rw.Cells["Diem"].Value.ToString(), out k))
                             {
                                 Diem.Diem = k;
                             }
-                            else if (rw.Cells[6].Value.ToString() != "")
+                            else if (rw.Cells["Diem"].Value.ToString() != "")
                             {
-                                MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid score!");
+                                MessageBox.Show("Student " + rw.Cells["MSSV"].Value.ToString() + " does not have valid score!");
                                 success = false;
                             }
                             SV.tbl_Diem.Add(Diem);
                         }
                         else
                         {
-                            MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid MaMH!");
+                            MessageBox.Show("Student " + rw.Cells["MSSV"].Value.ToString() + " does not have valid MaMH!");
                             success = false;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid MSSV!");
+                        MessageBox.Show("Student " + rw.Cells["MSSV"].Value.ToString() + " does not have valid MSSV!");
                         success = false;
                     }
                 }
                 else
                 {
                     //Update
-                    check.Ho = rw.Cells[1].Value.ToString();
-                    check.Ten = rw.Cells[2].Value.ToString();
-                    bool result;
-                    if (Boolean.TryParse(rw.Cells[7].Value.ToString(), out result))
-                    {
-                        check.KetQuaTN = result;
-                    }
-                    else if (rw.Cells[7].Value.ToString() != "")
-                    {
-                        MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid KetQuaTN!");
-                        success = false;
-                    }
+                    check.Ho = rw.Cells["Ho"].Value.ToString();
+                    check.Ten = rw.Cells["Ten"].Value.ToString();
+
                     //Check ton tai trong tbl_Diem
-                    string valueCheck2 = rw.Cells[0].Value.ToString();
-                    string MaMH = rw.Cells[4].Value.ToString();
+                    string valueCheck2 = rw.Cells["MSSV"].Value.ToString();
+                    string MaMH = rw.Cells["MaMH"].Value.ToString();
                     var check2 = (from s in SV.tbl_Diem
                                   where s.MSSV == valueCheck2 && s.MaMH == MaMH
                                   select s).FirstOrDefault();
@@ -344,13 +337,13 @@ namespace SignUpDemo
                     if (check2 != null)
                     {
                         double score;
-                        if (Double.TryParse(rw.Cells[6].Value.ToString(), out score))
+                        if (Double.TryParse(rw.Cells["Diem"].Value.ToString(), out score))
                         {
                             check2.Diem = score;
                         }
-                        else if (rw.Cells[6].Value.ToString() != "")
+                        else if (rw.Cells["Diem"].Value.ToString() != "")
                         {
-                            MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid score!");
+                            MessageBox.Show("Student " + rw.Cells["MSSV"].Value.ToString() + " does not have valid score!");
                             success = false;
                         }
                     }
@@ -358,7 +351,7 @@ namespace SignUpDemo
                     else
                     {
                         //Check MaMh
-                        string temp = rw.Cells[0].Value.ToString();
+                        string temp = rw.Cells["MSSV"].Value.ToString();
                         string temp2 = "";
                         int i = 0;
                         do
@@ -372,7 +365,7 @@ namespace SignUpDemo
                         bool checkMaMH = false;
                         for (int r = 0; r < mamh.Count; r++)
                         {
-                            if (mamh[r] == rw.Cells[4].Value.ToString())
+                            if (mamh[r] == rw.Cells["MaMH"].Value.ToString())
                             {
                                 checkMaMH = true;
                                 break;
@@ -381,24 +374,24 @@ namespace SignUpDemo
                         //Add
                         if (checkMaMH == true)
                         {
-                            Diem.MSSV = rw.Cells[0].Value.ToString();
-                            Diem.MaMH = rw.Cells[4].Value.ToString();
+                            Diem.MSSV = rw.Cells["MSSV"].Value.ToString();
+                            Diem.MaMH = rw.Cells["MaMH"].Value.ToString();
 
                             Double k;
-                            if (Double.TryParse(rw.Cells[6].Value.ToString(), out k))
+                            if (Double.TryParse(rw.Cells["Diem"].Value.ToString(), out k))
                             {
                                 Diem.Diem = k;
                             }
-                            else if (rw.Cells[6].Value.ToString() != "")
+                            else if (rw.Cells["Diem"].Value.ToString() != "")
                             {
-                                MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid score!");
+                                MessageBox.Show("Student " + rw.Cells["MSSV"].Value.ToString() + " does not have valid score!");
                                 success = false;
                             }
                             SV.tbl_Diem.Add(Diem);
                         }
                         else
                         {
-                            MessageBox.Show("Student " + rw.Cells[0].Value.ToString() + " does not have valid MaMH!");
+                            MessageBox.Show("Student " + rw.Cells["MSSV"].Value.ToString() + " does not have valid MaMH!");
                             success = false;
                         }
                     }
@@ -437,14 +430,14 @@ namespace SignUpDemo
                     if (sinhvien.Count > 0)
                     {
                         sotinchi = (int)(from d in SV.tbl_Diem
-                                        join t in SV.tbl_DMMonHoc
-                                        on d.MaMH equals t.MaMH into temp1
-                                        from q in temp1.DefaultIfEmpty()
-                                        where d.MSSV == MSSV
-                                        select q.SoTinChi).Sum(); 
+                                         join t in SV.tbl_DMMonHoc
+                                         on d.MaMH equals t.MaMH into temp1
+                                         from q in temp1.DefaultIfEmpty()
+                                         where d.MSSV == MSSV
+                                         select q.SoTinChi).Sum();
                     }
-                    
-                    if (sotinchi>=6)
+
+                    if (sotinchi >= 6)
                     {
                         foreach (var item in sinhvien)
                         {
@@ -461,35 +454,35 @@ namespace SignUpDemo
                     }
 
                     var sv = (from s in SV.tbl_SinhVien
-                                    where s.MSSV == MSSV
-                                    select s).FirstOrDefault();
+                              where s.MSSV == MSSV
+                              select s).FirstOrDefault();
 
                     sv.KetQuaTN = TN;
 
                     double tongdiem = 0;
-                    
-                    if (TN==true)
+
+                    if (TN == true)
                     {
-                        var diemtp =    (from d in SV.tbl_Diem
-                                         join t in SV.tbl_DMMonHoc
-                                         on d.MaMH equals t.MaMH into temp1
-                                         from q in temp1.DefaultIfEmpty()
-                                         where d.MSSV == MSSV
-                                         select new
-                                         {
-                                             num = q.SoTinChi,
-                                             score = d.Diem
-                                         }).ToList();
+                        var diemtp = (from d in SV.tbl_Diem
+                                      join t in SV.tbl_DMMonHoc
+                                      on d.MaMH equals t.MaMH into temp1
+                                      from q in temp1.DefaultIfEmpty()
+                                      where d.MSSV == MSSV
+                                      select new
+                                      {
+                                          num = q.SoTinChi,
+                                          score = d.Diem
+                                      }).ToList();
                         foreach (var item in diemtp)
                         {
                             tongdiem += (double)item.num * (double)item.score;
                         }
-                        sv.DTB = Math.Round((double)(tongdiem / sotinchi),2);
+                        sv.DTB = Math.Round((double)(tongdiem / sotinchi), 2);
                         if (sv.DTB >= 8)
                         {
                             sv.XepLoaiTN = "Gioi";
                         }
-                        else if (sv.DTB >=7)
+                        else if (sv.DTB >= 7)
                         {
                             sv.XepLoaiTN = "Kha";
                         }
@@ -577,7 +570,7 @@ namespace SignUpDemo
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.CurrentCell.ColumnIndex == 8)
+            if (dataGridView1.CurrentCell.ColumnIndex == 10)
             {
                 DialogResult confirm = MessageBox.Show("Are you fucking sure ?", "Warning", MessageBoxButtons.YesNo);
                 if (confirm == DialogResult.Yes)
@@ -653,6 +646,8 @@ namespace SignUpDemo
                           p.TenMH,
                           t.Diem,
                           s.KetQuaTN,
+                          s.DTB,
+                          s.XepLoaiTN,
                       });
 
             DataTable dt = ConvertDatatable.LINQToDataTable(DS);
@@ -684,6 +679,8 @@ namespace SignUpDemo
                           p.TenMH,
                           t.Diem,
                           s.KetQuaTN,
+                          s.DTB,
+                          s.XepLoaiTN,
                       });
             DataTable dt = ConvertDatatable.LINQToDataTable(DS);
             dataGridView1.DataSource = null;
