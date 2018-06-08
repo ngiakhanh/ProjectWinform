@@ -14,7 +14,8 @@ namespace SignUpDemo
     {
         SinhVienEntities1 SV = new SinhVienEntities1();
 
-        bool first = false;
+        public bool First { get; set; } = false;
+
         public QLDSMH()
         {
             InitializeComponent();
@@ -59,7 +60,7 @@ namespace SignUpDemo
                 comboBox1.DisplayMember = "TenKhoa";
                 comboBox1.ValueMember = "MaKhoa";
                 comboBox1.SelectedIndex = 1;
-                first = true;
+                First = true;
                 LoadFullDS();
             }
             else

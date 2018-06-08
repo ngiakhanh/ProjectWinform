@@ -13,8 +13,6 @@ namespace SignUpDemo
 {
     public partial class Form1 : Form
     {
-        int page = 1;
-        IPagedList<tbl_SinhVien> List;
         public Form1()
         {
             InitializeComponent();
