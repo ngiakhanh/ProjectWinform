@@ -23,10 +23,21 @@ namespace SignUpDemo
         {
             
             SinhVienEntities1 SV = new SinhVienEntities1();
-            var DS = (from s in SV.tbl_SinhVien
-                      select s).ToList();
-            DataTable dt = ConvertDatatable.LINQToDataTable(DS);
-
+            DataTable dt;
+            if (Login.MaKhoa == "QT")
+            {
+                var DS = (from s in SV.tbl_SinhVien
+                          select s).ToList();
+                dt = ConvertDatatable.LINQToDataTable(DS);
+            }
+            else
+            {
+                var DS = (from s in SV.tbl_SinhVien
+                          where s.MaKhoa == Login.MaKhoa
+                          select s).ToList();
+                dt = ConvertDatatable.LINQToDataTable(DS);
+            }
+            
             PageSettings pg = new PageSettings();
 
             pg.Margins = new Margins(0, 0, 0, 0);
@@ -38,6 +49,10 @@ namespace SignUpDemo
             reportViewer1.ProcessingMode = ProcessingMode.Local;
             reportViewer1.LocalReport.EnableExternalImages = true;
             reportViewer1.LocalReport.DataSources.Add(rpds);
+
+            ReportParameter[] parameters = new ReportParameter[1];    // So luong parameters
+            parameters[0] = new ReportParameter("Signature", "WhiteK");
+            this.reportViewer1.LocalReport.SetParameters(parameters);
 
             this.reportViewer1.SetPageSettings(pg);
             this.reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
