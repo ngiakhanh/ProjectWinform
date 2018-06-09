@@ -29,19 +29,21 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
@@ -52,6 +54,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 653);
             this.panel1.TabIndex = 0;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(47, 483);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(115, 43);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "Report";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(47, 233);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(115, 44);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "QLDSMH";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -111,16 +133,6 @@
             this.panel2.Size = new System.Drawing.Size(782, 610);
             this.panel2.TabIndex = 2;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(47, 233);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(115, 44);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "QLDSMH";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -131,7 +143,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "Project";
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -148,5 +160,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

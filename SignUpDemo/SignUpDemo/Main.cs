@@ -99,5 +99,11 @@ namespace SignUpDemo
         {
             ReloadMH();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Report frm = new Report();
+            frm.Show();
+        }
     }
 }
