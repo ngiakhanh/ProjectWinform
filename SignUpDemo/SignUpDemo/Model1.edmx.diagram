@@ -7,12 +7,12 @@
       <Diagram DiagramId="e3b0ab173d364b92916d8b62e6b83ea1" Name="Diagram1">
         <AssociationConnector Association="SinhVienModel.FK_tbl_DMMonHoc_tbl_MaKhoa" />
         <AssociationConnector Association="SinhVienModel.FK_tbl_SinhVien_tbl_DMMonHoc" />
-        <EntityTypeShape EntityType="SinhVienModel.sysdiagram" Width="1.5" PointX="8.25" PointY="1.5" />
-        <EntityTypeShape EntityType="SinhVienModel.tbl_DangNhap" Width="1.5" PointX="5.5" PointY="2" />
-        <EntityTypeShape EntityType="SinhVienModel.tbl_Diem" Width="1.5" PointX="7.75" PointY="6.875" />
-        <EntityTypeShape EntityType="SinhVienModel.tbl_DMMonHoc" Width="1.5" PointX="5.5" PointY="8.875" />
-        <EntityTypeShape EntityType="SinhVienModel.tbl_Khoa" Width="1.5" PointX="3.25" PointY="5.5" />
-        <EntityTypeShape EntityType="SinhVienModel.tbl_SinhVien" Width="1.5" PointX="5.5" PointY="4.75" />
+        <EntityTypeShape EntityType="SinhVienModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SinhVienModel.tbl_DangNhap" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="SinhVienModel.tbl_Diem" Width="1.5" PointX="5.25" PointY="6.125" />
+        <EntityTypeShape EntityType="SinhVienModel.tbl_DMMonHoc" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="SinhVienModel.tbl_Khoa" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SinhVienModel.tbl_SinhVien" Width="1.5" PointX="3" PointY="4" />
         <AssociationConnector Association="SinhVienModel.FK_tbl_DangNhap_tbl_Khoa" />
         <AssociationConnector Association="SinhVienModel.FK_tbl_Diem_tbl_DMMonHoc" />
         <AssociationConnector Association="SinhVienModel.FK_tbl_Diem_tbl_SinhVien" />
